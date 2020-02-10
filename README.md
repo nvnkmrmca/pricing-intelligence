@@ -1,2 +1,2 @@
-# pricing-intelligence
-pricing intelligence application.
+# transaction-management
+User transaction management task. 
