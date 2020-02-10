@@ -29,9 +29,21 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
+//server static files
+app.use(express.static('assets'));
+app.use(express.static('web'));
+
 // simple route
 app.get('/', (req, res) => {
-    res.send('Welcome to pricing intelligence api.');
+    var request = url.parse(req.url, true);
+    let file = '/index.html';
+    if(request.pathname && request.pathname.length > 0 && request.pathname.substring(0, 2) != '/#'){
+        file = request.pathname;
+    }
+    //var img = fs.readFileSync('./web' +  request.pathname);
+    
+    // res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile('./web' +  file, { root: './' });
 });
 
 // routes
